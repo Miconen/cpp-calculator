@@ -25,34 +25,6 @@ public:
 		return result;
 	}
 
-	int get(int input1, char operation, int input2)
-	{
-		switch (enumerateOperator(operation))
-		{
-		case ADDITION:
-			return input1 + input2;
-			break;
-		case SUBSTRACTION:
-			return input1 - input2;
-			break;
-		case MULTIPLICATION:
-			return input1 * input2;
-			break;
-		case DIVISION:
-			return input1 / input2;
-			break;
-		case EXPONENT:
-			return exponent(input1, input2);
-			break;
-		case FACTORIAL:
-			return factorial(input1);
-			break;
-		default:
-			return 0;
-			break;
-		};
-	}
-
 	int factorial(int input)
 	{
 		int _result{1};
@@ -74,30 +46,20 @@ public:
 	}
 
 private:
-	enum operations
-	{
-		ADDITION = 1,
-		SUBSTRACTION = 2,
-		MULTIPLICATION = 3,
-		DIVISION = 4,
-		EXPONENT = 5,
-		FACTORIAL = 6,
-	};
-
-	int enumerateOperator(char operation)
+	int get(int input1, char operation, int input2)
 	{
 		if (operation == '+')
-			return 1;
+			return input1 + input2;
 		if (operation == '-')
-			return 2;
+			return input1 - input2;
 		if (operation == '*' || operation == 'x')
-			return 3;
+			return input1 * input2;
 		if (operation == '/')
-			return 4;
+			return input1 / input2;
 		if (operation == '^')
-			return 5;
-		if (operation == '!')
-			return 6;
+			return exponent(input1, input2);
+		if (operation == '!' && !input2)
+			factorial(input1);
 		return 0;
 	}
 
@@ -133,7 +95,6 @@ private:
 	{
 		int cutoffIndex{valueLength1 + valueLength2 + 1};
 		calculation = to_string(result) + calculation.substr(cutoffIndex);
-		cout << calculation << endl;
 	}
 };
 
